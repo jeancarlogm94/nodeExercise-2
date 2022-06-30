@@ -18,6 +18,7 @@ const {
 const {
   tasksExists,
   taskStatusActive,
+  tasksActive,
 } = require('../middlewares/tasks.middleware');
 
 const tasksRouter = express.Router();
@@ -29,10 +30,10 @@ tasksRouter.get('/', getAllTasks);
 
 tasksRouter.get('/:id', tasksExists, getTaskByStatus);
 
-tasksRouter.get('/:status', tasksExists, getTaskByStatus);
+tasksRouter.get('/:status', taskStatusActive, getTaskByStatus);
 
-tasksRouter.patch('/:id', tasksExists, taskStatusActive, upadateTasks);
+tasksRouter.patch('/:id', tasksExists, upadateTasks);
 
-tasksRouter.delete('/:id', tasksExists, taskStatusActive, deleteTasks);
+tasksRouter.delete('/:id', tasksExists, deleteTasks);
 
 module.exports = { tasksRouter };

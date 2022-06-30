@@ -56,12 +56,12 @@ const upadateTasks = catchAsync(async (req, res, next) => {
 
   if (finishDate.getTime() - limitDate.getTime() < 0) {
     await task.update({
-      finishDate: finishDate,
+      finishDate,
       status: 'completed',
     });
   } else {
     await task.update({
-      finishDate: finishDate,
+      finishDate,
       status: 'late',
     });
   }
