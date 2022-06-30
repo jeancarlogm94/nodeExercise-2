@@ -31,6 +31,9 @@ const createUserValidators = [
 const createTaskValidators = [
   body('title').notEmpty().withMessage('Title cannot be empty'),
   body('userId').notEmpty().withMessage('UserId cannot be empty'),
+  body('limitDate')
+    .isDate()
+    .withMessage('Invalid date format. Use the format: YYYY-MM-DD HH:mm:ss'),
 ];
 
 module.exports = { createUserValidators, createTaskValidators };
