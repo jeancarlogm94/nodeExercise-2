@@ -19,11 +19,11 @@ const { tasksExists } = require('../middlewares/tasks.middleware');
 const tasksRouter = express.Router();
 
 // Endpoints
-tasksRouter.get('/', createTaskValidators, createTasks);
+tasksRouter.post('/', createTaskValidators, createTasks);
 
 tasksRouter.get('/', getAllTasks);
 
-tasksRouter.post('/:status', tasksExists, getTaskByStatus);
+tasksRouter.get('/:status', tasksExists, getTaskByStatus);
 
 tasksRouter.patch('/:id', tasksExists, upadateTasks);
 

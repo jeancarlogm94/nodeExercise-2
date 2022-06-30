@@ -36,4 +36,7 @@ const createTaskValidators = [
     .withMessage('Invalid date format. Use the format: YYYY-MM-DD HH:mm:ss'),
 ];
 
-module.exports = { createUserValidators, createTaskValidators };
+module.exports = {
+  createUserValidators,
+  createTaskValidators,
+};

@@ -50,7 +50,7 @@ const deleteUser = catchAsync(async (req, res, next) => {
   const { user } = req;
 
   // await user.destroy();
-  await user.update({ status: 'deleted' });
+  await user.update({ status: 'disabled' });
 
   res.status(204).json({ status: 'success' });
 });
