@@ -47,7 +47,7 @@ const upadateTasks = catchAsync(async (req, res, next) => {
   if (finishDate.getTime() - limitDate.getTime() < 0) {
     await task.update({
       finishDate: finishDate,
-      status: 'complete',
+      status: 'completed',
     });
   } else {
     await task.update({
@@ -65,7 +65,7 @@ const upadateTasks = catchAsync(async (req, res, next) => {
 const deleteTasks = catchAsync(async (req, res, next) => {
   const { task } = req;
 
-  await task.update({ status: 'deleted' });
+  await task.update({ status: 'cancelled' });
 
   res.status(204).json({ status: 'success' });
 });
