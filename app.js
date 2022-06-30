@@ -12,11 +12,12 @@ const { AppError } = require('./utils/appError.util');
 
 // Init express app
 const app = express();
+
 app.use(express.json());
 
 // Endpoints
-app.use('api/v1/users', usersRouter);
-app.use('api/v1/tasks', tasksRouter);
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/tasks', tasksRouter);
 
 //
 app.all('*', (req, res, next) => {

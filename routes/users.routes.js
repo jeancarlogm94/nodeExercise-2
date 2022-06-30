@@ -1,7 +1,5 @@
 const express = require('express');
 
-const usersRouter = express.Router();
-
 // Controllers
 const {
   createUser,
@@ -17,6 +15,8 @@ const {
 } = require('../middlewares/validators.middleware');
 
 const { userExists } = require('../middlewares/users.middleware');
+
+const usersRouter = express.Router();
 
 // Endpoints
 usersRouter.post('/', createUserValidators, createUser);

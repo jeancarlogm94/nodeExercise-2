@@ -1,7 +1,5 @@
 const express = require('express');
 
-const tasksRouter = express.Router();
-
 // Controllers
 const {
   createTasks,
@@ -17,6 +15,8 @@ const {
 } = require('../middlewares/validators.middleware');
 
 const { tasksExists } = require('../middlewares/tasks.middleware');
+
+const tasksRouter = express.Router();
 
 // Endpoints
 tasksRouter.get('/', createTaskValidators, createTasks);
