@@ -3,7 +3,6 @@ const { Task } = require('../models/task.model');
 
 // Utils
 const { catchAsync } = require('../utils/catchAsync.util');
-const { AppError } = require('../utils/appError.util');
 
 const createTasks = catchAsync(async (req, res, next) => {
   const { title, userId, limitDate } = req.body;
@@ -39,12 +38,28 @@ const getTaskByStatus = catchAsync(async (req, res, next) => {
 });
 
 const upadateTasks = catchAsync(async (req, res, next) => {
-  const { task } = req;
-  const { title } = req.body;
+  const { id } = req.params;
 
-  await task.update({ task });
+  const task = await Task.findOne({ where: id });
+  const finishDate = new Date();
+  const limitDate = task.limitDate;
 
-  res.status(204).json({ status: 'success' });
+  if (finishDate.getTime() - limitDate.getTime() < 0) {
+    await task.update({
+      finishDate: finishDate,
+      status: 'complete',
+    });
+  } else {
+    await task.update({
+      finishDate: finishDate,
+      status: 'late',
+    });
+  }
+
+  res.status(204).json({
+    status: succes,
+    task,
+  });
 });
 
 const deleteTasks = catchAsync(async (req, res, next) => {

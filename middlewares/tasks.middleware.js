@@ -1,21 +1,22 @@
 // Models
-const { Task } = require('../models/task.model');
+// const { Task } = require('../models/task.model');
 
 // Utils
 const { AppError } = require('../utils/appError.util');
-const { catchAsync } = require('../utils/catchAsync.util');
+// const { catchAsync } = require('../utils/catchAsync.util');
 
-const tasksExists = catchAsync(async (req, res, next) => {
-  const { id } = req.params;
+const tasksExists = (req, res, next) => {
+  const { status } = req.params;
 
-  const task = await Task.findOne({ where: { id } });
+  const taskStatus = ['active', 'completed', 'late', 'cancelled'];
+
+  const task = taskStatus.find((taskStatus) => taskStatus === status);
 
   if (!task) {
     return next(new AppError('Task not found', 404));
   }
 
-  req.task = task;
   next();
-});
+};
 
 module.exports = { tasksExists };

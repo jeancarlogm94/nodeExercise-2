@@ -12,10 +12,14 @@ const {
 } = require('../controllers/tasks.controller');
 
 // Middlewares
+const {
+  createTaskValidators,
+} = require('../middlewares/validators.middleware');
+
 const { tasksExists } = require('../middlewares/tasks.middleware');
 
 // Endpoints
-tasksRouter.get('/', createTasks);
+tasksRouter.get('/', createTaskValidators, createTasks);
 
 tasksRouter.get('/', getAllTasks);
 

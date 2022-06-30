@@ -28,4 +28,9 @@ const createUserValidators = [
   checkResult,
 ];
 
-module.exports = { createUserValidators };
+const createTaskValidators = [
+  body('title').notEmpty().withMessage('Title cannot be empty'),
+  body('userId').notEmpty().withMessage('UserId cannot be empty'),
+];
+
+module.exports = { createUserValidators, createTaskValidators };
