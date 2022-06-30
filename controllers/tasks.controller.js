@@ -28,6 +28,15 @@ const getAllTasks = catchAsync(async (req, res, next) => {
   });
 });
 
+const getTaskById = catchAsync(async (req, res, next) => {
+  const { user } = req;
+
+  res.status(200).json({
+    status: 'success',
+    user,
+  });
+});
+
 const getTaskByStatus = catchAsync(async (req, res, next) => {
   const { task } = req;
 
@@ -73,6 +82,7 @@ const deleteTasks = catchAsync(async (req, res, next) => {
 module.exports = {
   createTasks,
   getAllTasks,
+  getTaskById,
   getTaskByStatus,
   upadateTasks,
   deleteTasks,
