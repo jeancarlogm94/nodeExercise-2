@@ -11,6 +11,7 @@ const createTasks = catchAsync(async (req, res, next) => {
     title,
     userId,
     limitDate,
+    startDate: new Date(),
   });
 
   res.status(201).json({
