@@ -50,7 +50,7 @@ const getTaskByStatus = catchAsync(async (req, res, next) => {
 const upadateTasks = catchAsync(async (req, res, next) => {
   const { id } = req.params;
 
-  const task = await Task.findOne({ where: id });
+  const task = await Task.findOne({ where: { id } });
   const finishDate = new Date();
   const limitDate = task.limitDate;
 
@@ -67,7 +67,7 @@ const upadateTasks = catchAsync(async (req, res, next) => {
   }
 
   res.status(204).json({
-    status: succes,
+    status: 'succes',
     task,
   });
 });
