@@ -29,7 +29,7 @@ tasksRouter.get('/', getAllTasks);
 
 tasksRouter.get('/:id', tasksExists, taskStatusActive, getTaskByStatus);
 
-tasksRouter.get('/:status', taskStatusActive, getTaskByStatus);
+tasksRouter.get('/:status', tasksExists, taskStatusActive, getTaskByStatus);
 
 tasksRouter.patch('/:id', tasksExists, taskStatusActive, upadateTasks);
 
