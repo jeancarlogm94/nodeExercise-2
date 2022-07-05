@@ -29,18 +29,4 @@ const taskStatusActive = catchAsync(async (req, res, next) => {
   next();
 });
 
-// const tasksActive = (req, res, next) => {
-//   const { status } = req.params;
-
-//   const taskStatus = ['active', 'completed', 'late', 'cancelled'];
-
-//   const task = taskStatus.find((taskStatus) => taskStatus === status);
-
-//   if (!task) {
-//     return next(new AppError('Task not found', 404));
-//   }
-
-//   next();
-// };
-
 module.exports = { tasksExists, taskStatusActive };

@@ -5,13 +5,13 @@ const { Task } = require('../models/task.model');
 const { catchAsync } = require('../utils/catchAsync.util');
 
 const createTasks = catchAsync(async (req, res, next) => {
-  const { title, userId, limitDate } = req.body;
+  const { title, userId, limitDate, startDate } = req.body;
 
   const newTask = await Task.create({
     title,
     userId,
     limitDate,
-    startDate: new Date(),
+    startDate,
   });
 
   res.status(201).json({
@@ -39,12 +39,24 @@ const getTaskById = catchAsync(async (req, res, next) => {
 });
 
 const getTaskByStatus = catchAsync(async (req, res, next) => {
-  const { task } = req;
+  const { status } = req.params;
 
-  res.status(200).json({
-    status: 'success',
-    task,
-  });
+  const taskStatus = ['active', 'completed', 'late', 'cancelled'];
+
+  const task = taskStatus.find((taskStat) => taskStat === status);
+
+  if (!task) {
+    return next(
+      new AppError(
+        'Task not found with status: active, completed, late or cancelled',
+        404
+      )
+    );
+  }
+
+  const tasks = await Task.findAll({ where: { status } });
+
+  res.status(200).json({ tasks });
 });
 
 const upadateTasks = catchAsync(async (req, res, next) => {
