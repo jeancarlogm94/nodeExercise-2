@@ -29,8 +29,16 @@ const createUserValidators = [
 ];
 
 const createTaskValidators = [
-  body('title').notEmpty().withMessage('Title cannot be empty'),
-  body('userId').notEmpty().withMessage('UserId cannot be empty'),
+  body('title')
+    .notEmpty()
+    .withMessage('Title cannot be empty')
+    .isString()
+    .withMessage('Title must be a string'),
+  body('userId')
+    .isNumeric()
+    .withMessage('UserId must be a number')
+    .custom((val) => val > 0)
+    .withMessage('UserId cannot be a negative number'),
   body('limitDate')
     .isDate()
     .withMessage('Invalid date format. Use the format: YYYY-MM-DD HH:mm:ss'),

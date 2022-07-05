@@ -1,15 +1,5 @@
 const express = require('express');
 
-// Controllers
-const {
-  createTasks,
-  getAllTasks,
-  getTaskById,
-  getTaskByStatus,
-  upadateTasks,
-  deleteTasks,
-} = require('../controllers/tasks.controller');
-
 // Middlewares
 const {
   createTaskValidators,
@@ -19,6 +9,16 @@ const {
   tasksExists,
   taskStatusActive,
 } = require('../middlewares/tasks.middleware');
+
+// Controllers
+const {
+  createTasks,
+  getAllTasks,
+  getTaskById,
+  getTaskByStatus,
+  upadateTasks,
+  deleteTasks,
+} = require('../controllers/tasks.controller');
 
 const tasksRouter = express.Router();
 
